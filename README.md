@@ -1,11 +1,11 @@
-# 🎮 Control_Defines_Difficulty
-: MMORPG Control Complexity & User Experience Analysis
+# 🎮 Control Defines Difficulty  
+### MMORPG Control Complexity & User Experience Analysis
 
 > **"모바일 환경에서 조작의 복잡함은 유저를 떠나게 하는가?"**
->
-아이온2와 로스트아크 모바일의 데이터를 비교 분석하여 
 
-**조작 복잡도**(CCS)가 유저 경험과 이탈에 미치는 구조적 영향을 규명하는 데이터 분석 프로젝트입니다.
+본 프로젝트는 모바일 MMORPG에서 조작 복잡도(Control Complexity Score, CCS)가  
+유저 경험(User Experience)과 이탈(Churn)에 미치는 영향을 데이터 기반으로 분석하고,  
+**서비스 개선 관점의 인사이트를 도출하는 것을 목표로 합니다.**
 
 ---
 
@@ -15,9 +15,142 @@
 
 ---
 
-## 📊 Dashboard Preview
-커뮤니티 인식과 실제 지표를 비교 분석하여 조작 구조와 게임별 기여도를 Tableau로 시각화했습니다.
-* **Tableau Dashboard**: https://public.tableau.com/app/profile/songmi.kim/viz/MMORPGUX/CCSUserExperienceAnalysis
+## 📌 1. Problem Definition
+
+모바일 MMORPG 커뮤니티에서는 지속적으로 다음과 같은 피드백이 발생합니다:
+
+- “조작이 너무 복잡하다”
+- “자동사냥인데도 피로하다”
+- “모바일인데 손이 너무 많이 간다”
+
+하지만 이러한 의견은 정성적 수준에 머무르며,  
+실제 서비스 지표와의 관계는 명확히 검증되지 않은 상태입니다.
+
+👉 본 프로젝트는 다음 질문에서 출발합니다:
+
+> **조작 복잡도는 단순 난이도가 아니라, 유저 이탈을 유발하는 구조적 요인인가?**
+
+---
+
+## 🎯 2. Objective
+
+- 조작 복잡도(CCS)를 정량화하고 구조적으로 정의
+- 유저 체감(Community Perception)과 실제 경험 간의 Gap 분석
+- CCS가 유저 경험 및 이탈에 미치는 영향 규명
+- 분석 결과를 기반으로 **서비스 개선 전략 제안**
+
+---
+
+## 🏗 3. Data & Architecture
+
+### 📦 Data Sources
+
+| Source | Type | Description |
+|------|------|-------------|
+| Community | Qualitative | Reddit, Inven, DCInside, YouTube 댓글 |
+| Metadata | Structured | CCS, 자동화 여부, 감성 라벨링 |
+| Processing | Pipeline | 다국어 번역 및 텍스트 전처리 |
+
+---
+
+### 📊 Data Scale
+
+- 총 데이터: **14,135건**
+- 커뮤니티 채널: 8개
+- 언어 비중:
+  - 한국어: 94.68%
+  - 영어: 4.77%
+  - 기타 포함
+
+---
+
+## ⚙️ 4. Feature Engineering
+
+### 🔹 Control Complexity Score (CCS)
+- 입력 수, 조작 빈도, 반응 요구 수준 기반 정량화
+
+### 🔹 Experience Gap
+- 게임별 부정 경험 비율 차이
+- 임계값(Threshold) 기반 위험 구간 정의
+
+### 🔹 Control Performance
+- High CCS 구간에서의 감정 변화 및 UX 지표 분석
+
+### 🔹 Timeline Features
+- 출시 이후 여론 변화 흐름 분석
+
+### 🔹 Text Features
+- 형태소 분석(Okt) 기반 핵심 키워드 추출  
+  (피로, 스트레스, 반복, 자동화 등)
+
+---
+
+## 🔍 5. Key Findings
+
+### 1) 조작 복잡도와 부정 경험의 강한 상관관계
+- High CCS 구간 → **부정률 87.30%**
+
+### 2) 자동화 시스템의 역설
+- 자동화 사용 시 → **부정 경험 93.95%**  
+→ “편의성 증가”보다 “게임 재미 감소” 영향이 큼
+
+### 3) 게임 간 구조적 차이
+- 아이온2: 부정 비율 27.85%
+- 로스트아크M: 부정 비율 12.87%  
+→ 약 2배 차이 발생
+
+---
+
+## 💼 6. Business Impact
+
+본 분석을 통해 조작 복잡도는 단순 난이도가 아닌  
+**유저 이탈을 유발하는 핵심 구조적 변수**로 작용할 가능성을 확인했습니다.
+
+### 주요 리스크
+
+- 초기 구간 피로도 증가 → **Retention 저하**
+- 조작 피로 누적 → **플레이 타임 감소**
+- 자동화 의존 → **게임 몰입도 하락**
+- 결과적으로 → **장기 유저 이탈 가능성 증가**
+
+---
+
+## 🧩 7. Actionable Insights
+
+### 1) 초반 구간 CCS 완화
+- 튜토리얼에서 조작 복잡도 단계적 증가 설계 필요
+
+### 2) 자동화 시스템 재설계
+- 완전 자동화 → 부분 자동화 구조 전환
+- 유저 개입 요소 유지
+
+### 3) 숙련도 기반 UX 분리
+- 신규 유저: Low CCS 환경 제공
+- 숙련 유저: High CCS 선택 가능 구조
+
+### 4) CCS Threshold 기반 밸런싱
+- 특정 CCS 이상 구간에서 부정 경험 급증  
+→ 게임 설계 기준으로 활용 가능
+
+---
+
+## 📈 8. Expected Impact
+
+- Retention 개선 (초기 이탈 감소)
+- 플레이 타임 증가
+- 유저 경험 만족도 상승
+- BM 전환율 개선 가능성
+
+---
+
+## 📊 9. Dashboard
+
+👉 Tableau Dashboard  
+https://public.tableau.com/app/profile/songmi.kim/viz/MMORPGUX/CCSUserExperienceAnalysis
+
+- CCS & UX 분석
+- 커뮤니티 감정 비교
+- 게임 간 구조적 차이 시각화
 
 <p align="center">
   <img src="0_images/1. CCS & User Experience Analysis.png" width="30%">
@@ -27,58 +160,31 @@
 
 ---
 
-## 🎯 Project Overview
-모바일 MMORPG 커뮤니티에서 반복되는 "조작 피로도"와 "수동 조작의 가치"에 대한 의문을 데이터로 검증합니다.
-* **유저 체감**: "손가락이 너무 아프다", "모바일인데 조작이 너무 복잡하다."
-* **분석 목표**: **Community Perception → Gameplay Category → Experience Gap**의 관계를 분석하여 유저 유지 및 이탈을 결정짓는 구조적 요인을 도출합니다.
+## 🛠 10. Tech Stack
+
+- Python (pandas, scikit-learn, konlpy)
+- SQL (MySQL)
+- Tableau
+- Streamlit
 
 ---
 
-## 🏗 Project Architecture & Data
+## 🔮 11. Future Work
 
-### 📦 데이터 소스 및 역할
-| Source | Data Type | Role |
-| :--- | :--- | :--- |
-| **Community** | Qualitative | Reddit, Inven, DCInside, YouTube 댓글 수집 |
-| **Categorization** | Metadata | 조작 복잡도(CCS), 자동화 여부, 감성 라벨링 |
-| **Translation** | Processing | 다국어 데이터 번역 및 텍스트 전처리 |
-
-### 📈 데이터 규모
-* **수집 대상**: 주요 8개 커뮤니티 채널 (Reddit, Inven, DCInside, YouTube 등)
-* **클린 데이터**: 총 **14,135건**의 정제된 분석 데이터
-* **언어 비중**: 한국어(94.68%), 영어(4.77%) 등 다국어 포함
+- 실제 게임 로그 데이터 기반 CCS 검증
+- 플레이 타임 및 이탈률과의 정량적 관계 분석
+- A/B 테스트 기반 조작 구조 최적화
 
 ---
 
-## ⚙️ Feature Engineering
-데이터 구조 해석을 위해 다음과 같은 주요 Feature를 설계했습니다.
+## 🙋 12. About Me
 
-* **Control Performance**: High CCS 구간 감정 분석, 조작 편의성 지표
-* **Experience Gap**: 게임별 부정 비율 격차, 임계값(Threshold) 도출
-* **Timeline Features**: 출시 초기 대비 여론 변화 흐름 분석
-* **Text Features**: `Okt` 형태소 분석을 통한 핵심 키워드(피로, 스트레스 등) 추출
+데이터 분석, 데이터 엔지니어링, DBA 경험을 기반으로  
+단순한 지표 분석이 아닌 **서비스 개선으로 이어지는 데이터 분석**을 지향합니다.
 
----
-
-## 🔍 Exploratory Data Analysis (EDA)
-단순 요약이 아닌 가설 검증을 위한 단계로 수행되었습니다.
-1. **CCS 수준별 감정**: High CCS 구간에서 부정률 **87.30%** 기록
-2. **자동화 의존도**: 자동화 사용 시 부정 경험 **93.95%**로 급증 (조작 재미 결여)
-3. **게임별 비교**: 아이온2의 부정 비율(27.85%)이 로스트아크M(12.87%) 대비 약 2배 높음
-
----
-
-## 📊 Tableau 대시보드 구성
-1. **CCS & User Experience**: 전체 데이터 및 조작 수준별 행동 변화 분석
-2. **Community Analysis**: 플랫폼별 감정 비중 및 채널별 특징 비교
-3. **Game Comparison**: 아이온2 vs 로스트아크M 지표 격차 및 위험 진단 (Highlight Table)
-
----
-
-## 🛠 기술 스택
-* **Language**: `Python 3.10`
-* **Libraries**: `pandas`, `konlpy(Okt)`, `scikit-learn`, `wordcloud`, `matplotlib`
-* **Visualization**: `Tableau`, `Streamlit` (Interactive Dashboard)
+특히 게임 도메인에서  
+유저 행동을 구조적으로 해석하고, 이를 통해  
+실제 의사결정에 기여하는 분석가로 성장하고자 합니다.
 
 ---
 
