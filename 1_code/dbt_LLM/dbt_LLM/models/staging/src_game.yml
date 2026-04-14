@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: main_db
+    schema: main  # DuckDB의 기본 스키마는 main
+    tables:
+      - name: raw_comments # 파이썬으로 넣었던 실제 테이블 이름
